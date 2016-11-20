@@ -1,4 +1,6 @@
 const	APP_ID = '76dc88ee534303a679d5db850ed3f137';
+const ENABLE_HIGH_ACCURACY =  false;
+const MAXIMUM_AGE = 1000 * 60 * 60;
 
 class WeatherWidget {
 
@@ -77,8 +79,8 @@ class WeatherWidget {
           },
           error => reject(error),
           {
-            enableHighAccuracy: false,
-            maximumAge: 1000 * 60 * 60
+            enableHighAccuracy: ENABLE_HIGH_ACCURACY,
+            maximumAge: MAXIMUM_AGE
           }
         );
       } else {

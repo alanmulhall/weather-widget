@@ -10,9 +10,7 @@ describe('WeatherWidget', () => {
 
 		beforeEach(() => {
       sandbox = sinon.sandbox.create();
-      sandbox.stub(WeatherWidget.prototype, '_getUsersGeoLocation').returns(new Promise(resolve => {
-        return resolve({lat: 99.04, lon: 7.61});
-      }));
+      sandbox.stub(WeatherWidget.prototype, '_getUsersGeoLocation').returns(Promise.resolve({lat: 99.04, lon: 7.61}));
 			sandbox.stub(WeatherWidget.prototype, '_fetchWeather').returns(
 				JSON.parse('{"coord":{"lon":99.04,"lat":7.61},"weather":[{"id":802,"main":"Clouds","description":"scattered clouds","icon":"03d"}],"base":"stations","main":{"temp":25.52,"pressure":1010,"humidity":94,"temp_min":25,"temp_max":26},"visibility":7000,"wind":{"speed":2.6,"deg":30},"clouds":{"all":40},"dt":1479603600,"sys":{"type":1,"id":7952,"message":0.0026,"country":"TH","sunrise":1479597412,"sunset":1479639724},"id":6691842,"name":"Saladan","cod":200}')
 			);
@@ -21,9 +19,9 @@ describe('WeatherWidget', () => {
 		context('with wind', () => {
 
 			it('has the correct title', done => {
-				const widget = new WeatherWidget({title: 'test', units: 'metric', showWind: true});
+				const widget = new WeatherWidget({title: 'A Super Cool Title', units: 'metric', showWind: true});
 				widget.then(data => {
-					const title = !!data.match(/test/);
+					const title = !!data.match(/A Super Cool Title/);
 					expect(title).to.equal(true);
 					done();
 				});
@@ -98,9 +96,7 @@ describe('WeatherWidget', () => {
 
 		beforeEach(() => {
       sandbox = sinon.sandbox.create();
-      sandbox.stub(WeatherWidget.prototype, '_getUsersGeoLocation').returns(new Promise(resolve => {
-        return resolve({lat: 99.04, lon: 7.61});
-      }));
+      sandbox.stub(WeatherWidget.prototype, '_getUsersGeoLocation').returns(Promise.resolve({lat: 99.04, lon: 7.61}));
 			sandbox.stub(WeatherWidget.prototype, '_fetchWeather').returns(
         JSON.parse('{"coord":{"lon":99.04,"lat":7.61},"weather":[{"id":803,"main":"Clouds","description":"broken clouds","icon":"04d"}],"base":"stations","main":{"temp":89.6,"pressure":1009,"humidity":62,"temp_min":89.6,"temp_max":89.6},"visibility":10000,"wind":{"speed":5.82},"clouds":{"all":75},"dt":1479618000,"sys":{"type":1,"id":7952,"message":0.0115,"country":"TH","sunrise":1479597415,"sunset":1479639726},"id":6691842,"name":"Saladan","cod":200}')
 			);
@@ -136,7 +132,6 @@ describe('WeatherWidget', () => {
         });
       });
     });
-
 
     afterEach(() => {
       sandbox.restore();
