@@ -131,14 +131,18 @@ return /******/ (function(modules) { // webpackBootstrap
 			key: '_getUsersGeoLocation',
 			value: function _getUsersGeoLocation() {
 				return new Promise(function (resolve, reject) {
-					navigator.geolocation.getCurrentPosition(function (position) {
-						return resolve({ lat: position.coords.latitude, lon: position.coords.longitude });
-					}, function (error) {
-						return reject(error);
-					}, {
-						enableHighAccuracy: false,
-						maximumAge: 1000 * 60 * 60
-					});
+					if ("geolocation" in navigator) {
+						navigator.geolocation.getCurrentPosition(function (position) {
+							return resolve({ lat: position.coords.latitude, lon: position.coords.longitude });
+						}, function (error) {
+							return reject(error);
+						}, {
+							enableHighAccuracy: false,
+							maximumAge: 1000 * 60 * 60
+						});
+					} else {
+						return reject('Geolocation is unavailable');
+					}
 				});
 			}
 		}, {

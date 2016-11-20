@@ -29,7 +29,7 @@ class WeatherWidget {
 		} else {
 			 dayornight = 'night-';
 		}
-   return `${prefix}owm-${dayornight}${code}`;
+    return `${prefix}owm-${dayornight}${code}`;
 	}
 
 	_windTemplate({speed}) {
@@ -70,17 +70,21 @@ class WeatherWidget {
 
 	_getUsersGeoLocation() {
 		return new Promise((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(
-        position => {
-          return resolve({lat: position.coords.latitude, lon: position.coords.longitude});
-        },
-        error => reject(error),
-        {
-          enableHighAccuracy: false,
-          maximumAge: 1000 * 60 * 60
-        }
-      );
-		});
+      if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          position => {
+            return resolve({lat: position.coords.latitude, lon: position.coords.longitude});
+          },
+          error => reject(error),
+          {
+            enableHighAccuracy: false,
+            maximumAge: 1000 * 60 * 60
+          }
+        );
+      } else {
+        return reject('Geolocation is unavailable');
+      }
+    });
 	}
 
 	_buildWeatherUrl({lat, lon}) {
