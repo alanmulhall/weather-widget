@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1= title
+  #weather-widget
+  script.
+    const widget = new WeatherWidget.default({title: 'test', units: 'metric', showWind: true});
+    widget.then(data => {
+      let host = document.querySelector('#weather-widget').createShadowRoot();
+      host.innerHTML = data;
+    });
