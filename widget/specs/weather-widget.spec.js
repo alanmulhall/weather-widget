@@ -78,8 +78,7 @@ describe("WeatherWidget", () => {
 			it("has the correct weather icon", (done) => {
 				const widget = new WeatherWidget({title: 'test', units: 'metric', showWind: true});
 				widget.then(data => {
-          console.log(data);
-					const icon = !!data.match(/wi wi-owm-day-802/);
+					const icon = !!data.match(/wi wi-owm-day-802|wi wi-owm-night-802/);
 					expect(icon).to.equal(true);
 					done();
 				});
