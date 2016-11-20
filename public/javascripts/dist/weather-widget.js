@@ -64,12 +64,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	// How to test
-	// document.querySelectorAll('html /deep/ #message')[0].textContent (note: deep is depreciated)
 	var APP_ID = '76dc88ee534303a679d5db850ed3f137';
-	
-	// units=imperial
-	// units=metric
 	
 	var WeatherWidget = function () {
 		function WeatherWidget(settings) {
@@ -176,10 +171,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		}, {
 			key: '_render',
 			value: function _render(data) {
-				//console.log(JSON.stringify(data));
 				return this._template(data);
-				//let widget = document.querySelector(this.element).createShadowRoot();
-				//return widget.innerHTML = this._template(data);
 			}
 		}]);
 	
