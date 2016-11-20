@@ -24,3 +24,8 @@ A prototype of a weather widget using the Shadow DOM and ES6.
 1. run `npm install node-inspector -g`
 2. run `node-inspector` and in another windo
 3. run `npm run test-debug`
+
+### Travis CI
+
+When master is pushed to github, tests are run on Travis ci. Which can
+be [viewed here](https://travis-ci.org/alanmulhall/weather-widget)
