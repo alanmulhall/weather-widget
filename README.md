@@ -1,7 +1,7 @@
 ## Weather Widget 
 A prototype of a weather widget using the Shadow DOM and ES6.
 
-#### Run locally
+### Run locally
 
 1. run `npm install webpack -g`
 2. run `npm install`
