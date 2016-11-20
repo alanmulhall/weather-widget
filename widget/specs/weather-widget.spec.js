@@ -3,12 +3,6 @@ import chai from 'chai';
 let expect = chai.expect;
 import WeatherWidget from '../weather-widget';
 
-global.navigator = {
-		geolocation: {
-				getCurrentPosition: () => {}
-		}
-};
-
 describe("WeatherWidget", () => {
 	let sandbox;
 
@@ -30,7 +24,7 @@ describe("WeatherWidget", () => {
 
 		context('with wind', () => {
 
-			it("has the correct title", (done) => {
+			it("has the correct title", done => {
 				const widget = new WeatherWidget({title: 'test', units: 'metric', showWind: true});
 				widget.then(data => {
 					const title = !!data.match(/test/);
@@ -39,7 +33,7 @@ describe("WeatherWidget", () => {
 				});
 			});
 
-			it("has the correct location", (done) => {
+			it("has the correct location", done => {
 				const widget = new WeatherWidget({title: 'test', units: 'metric', showWind: true});
 				widget.then(data => {
 					const location = !!data.match(/Saladan/);
@@ -48,7 +42,7 @@ describe("WeatherWidget", () => {
 				});
 			});
 
-			it("has the correct tempature", (done) => {
+			it("has the correct tempature", done => {
 				const widget = new WeatherWidget({title: 'test', units: 'metric', showWind: true});
 				widget.then(data => {
 					const tempature = !!data.match(/25\.52/);
@@ -57,7 +51,7 @@ describe("WeatherWidget", () => {
 				});
 			});
 
-			it("has the correct description", (done) => {
+			it("has the correct description", done => {
 				const widget = new WeatherWidget({title: 'test', units: 'metric', showWind: true});
 				widget.then(data => {
 					const description = !!data.match(/scattered clouds/);
@@ -66,7 +60,7 @@ describe("WeatherWidget", () => {
 				});
 			});
 
-			it("has the correct wind speed", (done) => {
+			it("has the correct wind speed", done => {
 				const widget = new WeatherWidget({title: 'test', units: 'metric', showWind: true});
 				widget.then(data => {
 					const wind = !!data.match(/2.6 meter\/sec/);
@@ -75,7 +69,7 @@ describe("WeatherWidget", () => {
 				});
 			});
 
-			it("has the correct weather icon", (done) => {
+			it("has the correct weather icon", done => {
 				const widget = new WeatherWidget({title: 'test', units: 'metric', showWind: true});
 				widget.then(data => {
 					const icon = !!data.match(/wi wi-owm-day-802|wi wi-owm-night-802/);
@@ -87,7 +81,7 @@ describe("WeatherWidget", () => {
 		});
 
 		context('without wind', () => {
-			it('does not display wind speed', (done) => {
+			it('does not display wind speed', done => {
 				const widget = new WeatherWidget({title: 'test', units: 'metric', showWind: false});
 				widget.then(data => {
 					const description = !!data.match(/2.6 meter\/sec/);

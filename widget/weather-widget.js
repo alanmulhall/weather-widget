@@ -1,9 +1,5 @@
-// How to test
-// document.querySelectorAll('html /deep/ #message')[0].textContent (note: deep is depreciated)
 const	APP_ID = '76dc88ee534303a679d5db850ed3f137';
 
-// units=imperial
-// units=metric
 class WeatherWidget {
 
 	constructor(settings) {
@@ -74,16 +70,16 @@ class WeatherWidget {
 
 	_getUsersGeoLocation() {
 		return new Promise((resolve, reject) => {
-				navigator.geolocation.getCurrentPosition(
-					position => {
-						return resolve({lat: position.coords.latitude, lon: position.coords.longitude});
-					},
-					error => reject(error),
-					{
-						enableHighAccuracy: false,
-						maximumAge: 1000 * 60 * 60
-					}
-				);
+      navigator.geolocation.getCurrentPosition(
+        position => {
+          return resolve({lat: position.coords.latitude, lon: position.coords.longitude});
+        },
+        error => reject(error),
+        {
+          enableHighAccuracy: false,
+          maximumAge: 1000 * 60 * 60
+        }
+      );
 		});
 	}
 
@@ -107,10 +103,7 @@ class WeatherWidget {
 	}
 
 	_render(data) {
-		//console.log(JSON.stringify(data));
 		return this._template(data);
-		//let widget = document.querySelector(this.element).createShadowRoot();
-		//return widget.innerHTML = this._template(data);
 	}
 
 };
